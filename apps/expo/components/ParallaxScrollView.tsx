@@ -8,12 +8,13 @@ import Animated, {
 } from "react-native-reanimated";
 
 import { ThemedView } from "../components/ThemedView";
+import { ThemedSafeAreaView } from "./ThemedSafeAreaView";
 
 const HEADER_HEIGHT = 250;
 
 type Props = PropsWithChildren<{
-  headerBackgroundColor: { dark: string; light: string };
-  headerImage: ReactElement;
+  headerBackgroundColor?: { dark: string; light: string };
+  headerImage?: ReactElement;
 }>;
 
 export default function ParallaxScrollView({
@@ -47,20 +48,22 @@ export default function ParallaxScrollView({
   });
 
   return (
-    <ThemedView style={styles.container}>
+    <ThemedSafeAreaView style={styles.container}>
       <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-        <Animated.View
-          style={[
-            styles.header,
-            { backgroundColor: headerBackgroundColor[colorScheme] },
-            headerAnimatedStyle,
-          ]}
-        >
-          {headerImage}
-        </Animated.View>
+        {headerBackgroundColor && headerImage && (
+          <Animated.View
+            style={[
+              styles.header,
+              { backgroundColor: headerBackgroundColor[colorScheme] },
+              headerAnimatedStyle,
+            ]}
+          >
+            {headerImage}
+          </Animated.View>
+        )}
         <ThemedView style={styles.content}>{children}</ThemedView>
       </Animated.ScrollView>
-    </ThemedView>
+    </ThemedSafeAreaView>
   );
 }
 

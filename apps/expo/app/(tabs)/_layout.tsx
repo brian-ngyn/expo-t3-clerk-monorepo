@@ -39,6 +39,18 @@ export default function TabLayout() {
           title: "Explore",
         }}
       />
+      <Tabs.Screen
+        name="tweets"
+        options={{
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              color={color}
+              name={focused ? "clipboard" : "clipboard-outline"}
+            />
+          ),
+          title: "Tweets",
+        }}
+      />
     </Tabs>
   );
 }
