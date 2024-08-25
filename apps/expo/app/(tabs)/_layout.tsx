@@ -40,15 +40,15 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="tweets"
+        name="test"
         options={{
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               color={color}
-              name={focused ? "clipboard" : "clipboard-outline"}
+              name={focused ? "cube" : "cube-outline"}
             />
           ),
-          title: "Tweets",
+          title: "Test",
         }}
       />
     </Tabs>

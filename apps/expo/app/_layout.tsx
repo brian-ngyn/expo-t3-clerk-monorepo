@@ -12,6 +12,7 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
+import { AppContextProvider } from "../context/appContext";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -37,14 +38,16 @@ export default function RootLayout() {
     >
       <ClerkLoaded>
         <TRPCProvider>
-          <ThemeProvider
-            value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-          >
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-          </ThemeProvider>
+          <AppContextProvider>
+            <ThemeProvider
+              value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+            >
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen name="+not-found" />
+              </Stack>
+            </ThemeProvider>
+          </AppContextProvider>
         </TRPCProvider>
       </ClerkLoaded>
     </ClerkProvider>

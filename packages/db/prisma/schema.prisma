@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -12,7 +12,18 @@ datasource db {
 }
 
 model Post {
-    id      String @id @default(cuid())
-    title   String
-    content String
+  id      String @id @default(cuid())
+  title   String
+  content String
+}
+
+model FeatureFlags {
+  flagName  FLAGS   @id @unique
+  isEnabled Boolean @default(false)
+}
+
+enum FLAGS {
+  FEATURE_ONE
+  FEATURE_TWO
+  FEATURE_THREE
 }

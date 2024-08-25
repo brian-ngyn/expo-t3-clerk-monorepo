@@ -8,8 +8,10 @@ import { SignedIn, SignedOut } from "@clerk/clerk-expo";
 import SignInWithDiscord from "../(auth)/discord";
 import SignOut from "../(auth)/signout";
 import { NewPost } from "../../components/tweets/NewPost";
+import { useAppContext } from "../../context/appContext";
 
-export default function HomeScreen() {
+export default function TestScreen() {
+  const { featureFlags } = useAppContext();
   const posts = trpc.post.all.useQuery();
   return (
     <ParallaxScrollView>
@@ -33,6 +35,13 @@ export default function HomeScreen() {
           );
         })}
       </ThemedView>
+      {featureFlags.flags?.map((flag) => (
+        <ThemedView key={flag.flagName}>
+          <ThemedText type="subtitle">
+            {flag.flagName} - {String(flag.isEnabled)}
+          </ThemedText>
+        </ThemedView>
+      ))}
     </ParallaxScrollView>
   );
 }
