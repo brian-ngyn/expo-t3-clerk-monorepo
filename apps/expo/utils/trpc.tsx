@@ -31,10 +31,10 @@ export const TRPCProvider: React.FC<{
               Authorization: authToken ?? undefined,
             };
           },
+          transformer,
           url: `${getBaseUrl()}/api/trpc`,
         }),
       ],
-      transformer,
     }),
   );
 

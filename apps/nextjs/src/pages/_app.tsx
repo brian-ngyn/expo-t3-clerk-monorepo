@@ -1,14 +1,13 @@
 import "../styles/globals.css";
 import type { AppType } from "next/app";
-import { ClerkProvider } from "@clerk/nextjs";
-import { trpc } from "../utils/trpc";
+import { TRPCProvider } from "../utils/trpc";
 
 const MyApp: AppType = ({ Component, pageProps: { ...pageProps } }) => {
   return (
-    <ClerkProvider {...pageProps}>
+    <TRPCProvider>
       <Component {...pageProps} />
-    </ClerkProvider>
+    </TRPCProvider>
   );
 };
 
-export default trpc.withTRPC(MyApp);
+export default MyApp;
