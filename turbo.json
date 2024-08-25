@@ -1,5 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "ui": "tui",
   "tasks": {
     "db-generate": {
       "inputs": [
@@ -17,7 +18,8 @@
       "dependsOn": [
         "^db-generate"
       ],
-      "cache": false
+      "cache": false,
+      "persistent": true
     },
     "build": {
       "dependsOn": [
